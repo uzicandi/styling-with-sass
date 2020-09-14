@@ -1,0 +1,88 @@
+// css 변수 선언
+$blue: #228be6;
+$grey: #495057;
+$pink: #f06595;
+
+@mixin button-color($color) {
+  background: $color;
+  &:hover {
+    // & : 자기 자신(.Button)을 가리킴
+    background: lighten($color, 10%);
+    // lighten 함수로 색상 밝기 정해줌
+  }
+  &:active {
+    background: darken($color, 10%);
+  }
+  &.outline {
+    color: $color;
+    background: none;
+    border: 1px solid $color;
+    &:hover {
+      background: $color;
+      color: white;
+    }
+  }
+}
+
+.Button {
+  display: inline-flex;
+  color: white;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &.large {
+    height: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1.25rem;
+  }
+
+  &.medium {
+    height: 2.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1rem;
+  }
+
+  &.small {
+    height: 1.75rem;
+    font-size: 0.075rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  // 버튼 크기
+  height: 2.25rem;
+  // rem : 현재 브라우저 페이지 기본 폰트에 기반하여 조정됨
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1rem;
+
+  &.blue {
+    @include button-color($blue);
+  }
+
+  &.grey {
+    @include button-color($grey);
+  }
+
+  &.pink {
+    @include button-color($pink);
+  }
+
+  & + & {
+    margin-left: 1rem;
+  }
+
+  &.fullWidth {
+    width: 100%;
+    justify-content: center;
+    & + & {
+      margin-left: 0;
+      margin-top: 1rem;
+    }
+  }
+}
